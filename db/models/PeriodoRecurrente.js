@@ -1,10 +1,10 @@
 const db = require("../index");
 const S = require("sequelize");
 
-class PeriodoRecurrente extends S.model {}
+class PeriodoRecurrente extends S.Model {}
 PeriodoRecurrente.init(
     {
-        Activa: {
+        Activo: {
             type: S.BOOLEAN,
             defaultValue: true
         },
@@ -19,7 +19,7 @@ PeriodoRecurrente.init(
         },
         FechaFin: {
             type: S.DATEONLY
-        }
+        },
     }, {sequelize: db, modelName: 'PeriodoRecurrente'}
 )
 

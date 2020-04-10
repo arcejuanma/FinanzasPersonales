@@ -1,7 +1,7 @@
 const db = require("../index");
 const S = require("sequelize");
 
-class RecordatorioFinPeriodo extends S.model {}
+class RecordatorioFinPeriodo extends S.Model {}
 RecordatorioFinPeriodo.init(
     {
         Destinatario:{
@@ -9,6 +9,10 @@ RecordatorioFinPeriodo.init(
         },
         Mensaje:{
             type: S.TEXT
+        },
+        Activo: {
+            type: S.BOOLEAN,
+            defaultValue: true
         }
     }, {sequelize: db, modelName: 'RecordatorioFinPeriodo'}
 )

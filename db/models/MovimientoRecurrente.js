@@ -1,7 +1,7 @@
 const db = require("../index");
 const S = require("sequelize");
 
-class MovimientoRecurrente extends S.model {}
+class MovimientoRecurrente extends S.Model {}
 MovimientoRecurrente.init(
     {
         FechaProximaEjecucion: {
@@ -22,6 +22,10 @@ MovimientoRecurrente.init(
         CantidadEjecuciones: {
             type: S.INTEGER
         },
+        Activo: {
+            type: S.BOOLEAN,
+            defaultValue: true
+        }
     }, {sequelize: db, modelName: 'MovimientoRecurrente'}
 )
 

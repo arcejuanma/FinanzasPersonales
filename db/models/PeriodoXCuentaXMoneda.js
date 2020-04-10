@@ -1,7 +1,7 @@
 const db = require("../index");
 const S = require("sequelize");
 
-class PeriodoXCuentaXMoneda extends S.model {}
+class PeriodoXCuentaXMoneda extends S.Model {}
 PeriodoXCuentaXMoneda.init(
     {
         Saldo:{
@@ -9,6 +9,10 @@ PeriodoXCuentaXMoneda.init(
             },
         Estado:{
             type: S.STRING
+        },
+        Activo: {
+            type: S.BOOLEAN,
+            defaultValue: true
         }
     }, {sequelize: db, modelName: 'PeriodoXCuentasXMoneda'}
 )

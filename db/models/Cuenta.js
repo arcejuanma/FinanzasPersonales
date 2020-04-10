@@ -1,13 +1,14 @@
 const db = require("../index");
 const S = require("sequelize");
 
-class Cuenta extends S.model {}
+class Cuenta extends S.Model {}
 Cuenta.init(
     {
         Nombre: {
-            type: S.STRING
+            type: S.STRING,
+            allowNull: false
         },
-        Activa: {
+        Activo: {
             type: S.BOOLEAN,
             defaultValue: true
         }
