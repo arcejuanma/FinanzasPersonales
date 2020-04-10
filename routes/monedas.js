@@ -3,7 +3,7 @@ const { CategoriaGasto, Cuenta, Moneda, MotivoMovimiento, Movimiento, Movimiento
      PeriodoRecurrente, PeriodoXCuentaXMoneda, RecordatorioFinPeriodo } = require('../db/models');
 
 moneda.get('/', (req, res) => {
-    Moneda.findAll()
+    Moneda.findAll({where:{Activo: true}, attributes: ['Moneda', 'id']})
     .then(data => res.send(data))
     .catch(err => console.log(err))
 })

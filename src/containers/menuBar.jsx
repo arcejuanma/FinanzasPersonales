@@ -18,7 +18,8 @@ import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-
+import Cuentas from './aperturaCuenta/cuentas'
+ 
 
 function Copyright() {
   return (
@@ -111,26 +112,30 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
   },
   fixedHeight: {
-    height: 240,
+    height: 440,
   },
 }));
 
 export default function Dashboard() {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = React.useState(false);
+  const [hide, setHide] = React.useState(open?"none":"block")
   const handleDrawerOpen = () => {
     setOpen(true);
+    setHide("none")
   };
   const handleDrawerClose = () => {
     setOpen(false);
+    setHide("block")
   };
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
+  console.log(hide)
   return (
     <div className={classes.root}>
       <CssBaseline />
       <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
-        <Toolbar className={classes.toolbar}>
+        <Toolbar className={classes.toolbar} sm={12}>
           <IconButton
             edge="start"
             color="inherit"
@@ -163,17 +168,18 @@ export default function Dashboard() {
           </IconButton>
         </div>
         <Divider />
-        <List>Hola</List>
+        <List>Saldos</List>
         <Divider />
-        <List>Chau</List>
+        <List>Cuentas</List>
       </Drawer>
       <main className={classes.content}>
-        <div className={classes.appBarSpacer} />
-        <Container maxWidth="lg" className={classes.container}>
+        <div className={classes.appBarSpacer} />  
+        <Box className="Caja">
+        <Container maxWidth="lg" className={classes.container} >
           <Grid container spacing={3}>
             <Grid item xs={12} md={8} lg={9}>
               <Paper className={fixedHeightPaper}>
-                <h1> Hola</h1> 
+                <Cuentas/>
               </Paper>
             </Grid>
             <Grid item xs={12} md={4} lg={3}>
@@ -191,6 +197,7 @@ export default function Dashboard() {
             <Copyright />
           </Box>
         </Container>
+        </Box>
       </main>
     </div>
   );
