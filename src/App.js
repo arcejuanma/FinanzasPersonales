@@ -4,19 +4,10 @@ import './App.css';
 import axios from 'axios';
 
 function App() {
-  const [data, setData] = useState('')
 
-  useEffect(()=>{
-    async function getData(){
-      const result = await axios.get('http://localhost:8080/ping')
-      setData(result.data);
-    }
-    getData()
-  }, [])
-  
   return (
     <div className="App">
-     <h1>{data}</h1>
+     <h1>Hola</h1>
     </div>
   );
 }

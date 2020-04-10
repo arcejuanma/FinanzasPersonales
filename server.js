@@ -1,10 +1,11 @@
 const express = require('express')
-const bodyParser = require('body-parser')
+const bodyParser = require("body-parser")
 const db = require("./db")
 const path = require('path')
 var fs = require('fs')
 var morgan = require('morgan')
 var cors = require('cors')
+const api = require('./routes/api')
 
 const app = express()
 app.use(cors())
@@ -17,13 +18,10 @@ app.use(morgan('tiny'))
 
 app.use(express.static(path.join(__dirname, 'build')))
 
-app.get('/ping', function (req, res) {
- return res.send('pong')
-})
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use("/api", api);
 
-app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'))
-})
 
 db.sync()
 .then(()=>{
