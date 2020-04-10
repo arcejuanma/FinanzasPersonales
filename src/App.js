@@ -3,11 +3,13 @@ import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
 
+import MenuBar from './containers/menuBar'
+
 function App() {
 
   return (
     <div className="App">
-     <h1>Hola</h1>
+     <MenuBar/>
     </div>
   );
 }
