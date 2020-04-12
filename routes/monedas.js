@@ -1,24 +1,19 @@
 const moneda = require("express").Router();
-const { CategoriaGasto, Cuenta, Moneda, MotivoMovimiento, Movimiento, MovimientoRecurrente, Periodo,
-     PeriodoRecurrente, PeriodoXCuentaXMoneda, RecordatorioFinPeriodo } = require('../db/models');
-
-moneda.get('/', (req, res) => {
-    Moneda.findAll()
+const Moneda = require('../db/models/Moneda')
+//Alta y Consulta de monedas
+moneda.post('/crear', (req, res)=>{
+    Moneda.create({
+        Nombre: req.body.nombre,
+        Simbolo: req.body.simbolo
+    })
     .then(data => res.send(data))
     .catch(err => console.log(err))
 })
 
-moneda.post('/crear', (req, res) => {
-    console.log(req.body)
-    Moneda.create(req.body)
+moneda.get("/", (req,res) => {
+    Moneda.find()
     .then(data => res.send(data))
-    .catch(err => console.log(err))
-})
+} )
 
-moneda.delete('/borrar', (req, res) => {
-    Moneda.update({Activo: false}, {where: {id: req.body.id}})
-    .then(() => res.send(`Success`))
-    .catch (err => console.log(err))
-})
 
 module.exports = moneda
