@@ -1,14 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import axios from 'axios';
+import React from 'react'
+import './App.css'
+import store from "../src/store/index"
+import { Provider } from "react-redux"
+import MenuBar from './containers/menuBar'
 
 function App() {
 
   return (
+    <Provider store = {store}>
     <div className="App">
-     <h1>Hola</h1>
+     <MenuBar/>
     </div>
+    </Provider>
   );
 }
 
