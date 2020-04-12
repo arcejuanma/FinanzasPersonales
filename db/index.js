@@ -1,8 +1,11 @@
-const {Sequelize}  = require("sequelize");
+var mongoose = require('mongoose');
 
-const db = new Sequelize('finapp', 'postgres', 'Pipi1998', {
-    host: 'localhost',
-    dialect: 'postgres'
-  });
+mongoose.connect('mongodb://localhost:27017/finapp', {useNewUrlParser: true, useUnifiedTopology: true})
+var db = mongoose.connection
 
-module.exports = db;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+  console.log('Otro Exito mas')
+});
+
+module.exports = mongoose

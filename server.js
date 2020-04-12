@@ -1,6 +1,6 @@
 const express = require('express')
 const bodyParser = require("body-parser")
-const db = require("./db")
+const db = require('./db/index')
 const path = require('path')
 var fs = require('fs')
 var morgan = require('morgan')
@@ -23,12 +23,10 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use("/api", api);
 
 
-db.sync()
-.then(()=>{
+
     app.listen(process.env.PORT || 8080, ()=>{
         fs.appendFile(path.join(__dirname, 'access.log'), `Server Restarted at ${new Date()} \n`, (err) => {
             if (err) throw err
         })
         console.log(`Express Listening on port ${process.env.port || 8080}`)
     })
-})

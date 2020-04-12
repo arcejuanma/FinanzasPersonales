@@ -1,18 +1,15 @@
-const db = require("../index");
-const S = require("sequelize");
+const mongoose = require('mongoose')
+const { Schema } = require ("mongoose")
 
-class Cuenta extends S.Model {}
-Cuenta.init(
-    {
-        Nombre: {
-            type: S.STRING,
-            allowNull: false
-        },
-        Activo: {
-            type: S.BOOLEAN,
-            defaultValue: true
-        }
-    }, {sequelize: db, modelName: 'Cuenta'}
-)
+const Cuenta = new Schema({
+    Active: {type: Boolean, default: true},
+    Nombre: {type: String},
+    Periodos: [{type: Schema.Types.ObjectId, ref: "Periodo"}],
+    PeriodosRecurrentes: [{type: Schema.Types.ObjectId, ref: "PeriodosRecurrente"}],
+    MovimientosRecurrentes: [{type: Schema.Types.ObjectId, ref: "MoviemientosRecurrente"}],
+    Monedas: [{type: Schema.ObjectId, ref: "Moneda"}],
+    CuentaComitente: {type: Boolean, default: false},
+    Mercado: {type: String}
+})
 
-module.exports = Cuenta
+module.exports = mongoose.model("Cuenta", Cuenta)

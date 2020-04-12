@@ -1,18 +1,10 @@
-const db = require("../index");
-const S = require("sequelize");
+const mongoose = require('mongoose')
+const { Schema } = require ("mongoose")
 
-class Moneda extends S.Model {}
-Moneda.init(
-    {
-        Moneda:{
-            type: S.STRING,
-            allowNull: false
-        },
-        Activo: {
-            type: S.BOOLEAN,
-            defaultValue: true
-        }
-    }, {sequelize: db, modelName: 'Moneda'}
-)
+const Moneda = new Schema({
+    Active: {type: Boolean, default: true},
+    Nombre: {type: String},
+    Simbolo: {type: String},
+})
 
-module.exports = Moneda
+module.exports = mongoose.model("Moneda", Moneda)
