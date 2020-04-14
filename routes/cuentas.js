@@ -18,7 +18,7 @@ cuentas.post("/crear", (req, res)=>{
         Mercado: req.body.mercado || null
     })
     .then(data => res.send(data))
-    .cathc(err => console.log(err))
+    .catch(err => console.log(err))
 })
 
 cuentas.post("/addPeriodo", (req, res) => {
