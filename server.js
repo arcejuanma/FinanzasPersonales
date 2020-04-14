@@ -15,7 +15,7 @@ var accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), {
 // setup the logger
 app.use(morgan('tiny', { stream: accessLogStream }))
 app.use(morgan('tiny'))
-
+app.use('/static', express.static('public'));
 app.use(express.static(path.join(__dirname, 'build')))
 
 app.use(bodyParser.json())
