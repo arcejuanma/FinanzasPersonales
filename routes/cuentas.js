@@ -5,35 +5,22 @@ const Periodo = require('../db/models/Periodos')
 const PeriodoRecurrente = require('../db/models/PeriodosRecurrentes')
 const MovimientoRecurrente = require('../db/models/MovimientosRecurrentes')
 const Concepto = require('../db/models/Concepto')
+const utils = require('../utils/crearCuenta')
 
 cuentas.get("/", (req,res) => {
     Cuenta.find()
     .then(data => res.send(data))
 } )
 
-cuentas.post("/crear", (req, res)=>{
-    Cuenta.create({
-        Nombre: req.body.nombre,
-        CuentaComitente: req.body.comitente || false,
-        Mercado: req.body.mercado || null
-    })
-    .then(data => res.send(data))
-    .catch(err => console.log(err))
+cuentas.post("/crear", async (req, res)=>{
+    utils.createCuenta(req.body.nombre, req.body.comitente, req.body.mercado, req.body.monedasSeleccionadas, req.body.inicioPeriodo, req.body.finPeriodo)
+    .then(cuenta =>res.send(cuenta))
+    .catch(err => err)
 })
 
-cuentas.post("/addPeriodo", (req, res) => {
-    Cuenta.findById(req.body.cuentaId).select("Monedas")
-    .then(monedas =>monedas.Monedas)
-    .then(monedas => monedas.map(moneda=>{
-    Periodo.create({
-        FechaInicio: req.body.fechaInicio,
-        FechaFin: req.body.fechaFin,
-        Moneda: moneda
-    })
-    .then(periodoCreado => Cuenta.findByIdAndUpdate(req.body.cuentaId, {$push: {Periodos: periodoCreado}}))
-    })) 
-    .then(cuenta => res.send(cuenta))
-    .catch(err => console.log(err))
+cuentas.post("/addPeriodo", async (req, res) => {
+    const result = await utils.addPeriodo(req.body.cuentaId, req.body.fechaInicio, req.body.fechaFin)
+    res.send(result)
 })
 
 cuentas.post("/addPeriodoRecurrente", (req, res)=>{

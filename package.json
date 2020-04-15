@@ -10,6 +10,7 @@
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.19.2",
     "cors": "^2.8.5",
+    "crawler": "^1.2.1",
     "express": "^4.17.1",
     "gulp": "^4.0.2",
     "install": "^0.13.0",
