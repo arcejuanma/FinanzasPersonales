@@ -22,7 +22,10 @@ const DeskMovimientosCuenta = ()=>{
        {periodos.map(periodo =>
        <div>
             <h2>Movimientos en {periodo.Moneda.Nombre} </h2>
-            <h5>Saldo $ {periodo.Saldo}</h5>
+            <h5>Saldo  {new Intl.NumberFormat("es-AR", {
+                        style: "currency",
+                        currency: periodo.Moneda.Simbolo
+                }).format(periodo.Saldo)}</h5>
             <MovimientosXMoneda movimiento={periodo.Movimientos}/>
        </div>)}
     </div>

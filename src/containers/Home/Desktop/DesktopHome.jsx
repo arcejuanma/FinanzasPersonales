@@ -10,6 +10,7 @@ import {Style} from './style'
 import MisCuentas from '../../misCuentas/Desktop/DeskMisCuentas';
 import VerMovimientos from '../../VerMovimientos/VerMovimientos'
 import CrearMovimiento from '../../CrearMovimiento/CrearMovimiento'
+import PosicionConsolidada from './PosicionConsolidada'
 
 const DesktopHome = () => {
     return(
@@ -51,6 +52,9 @@ const DesktopHome = () => {
             </div>
             <div style={Style.routerDisplay}>
             <Switch>
+              <Route exact path="/">
+                  <PosicionConsolidada />
+              </Route>
               <Route path="/nuevaCuenta">
                 <CrearCuenta />
               </Route>
