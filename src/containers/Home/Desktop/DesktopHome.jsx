@@ -7,6 +7,9 @@ import {
   } from "react-router-dom";
 import CrearCuenta from '../../CrearCuenta/CrearCuenta'
 import {Style} from './style'
+import MisCuentas from '../../misCuentas/Desktop/DeskMisCuentas';
+import VerMovimientos from '../../VerMovimientos/VerMovimientos'
+import CrearMovimiento from '../../CrearMovimiento/CrearMovimiento'
 
 const DesktopHome = () => {
     return(
@@ -19,29 +22,29 @@ const DesktopHome = () => {
               <div class="item">
                 <div class="header">Cuentas</div>
                 <div class="menu">
-                  <a class="item">Mis Cuentas</a>
+                  <Link to="/miscuentas"><a class="item">Mis Cuentas</a></Link>
                   <Link to="/nuevaCuenta"><a class="item">Nueva Cuenta</a></Link>
                 </div>
               </div>
               <div class="item">
-                <div class="header">Monedas</div>
+                <div class="header">Movimientos</div>
                 <div class="menu">
-                  <a class="item">Rails</a>
-                  <a class="item">Python</a>
-                  <a class="item">Php</a>
+                  <Link to="/nuevoMovimiento"><a class="item">Nuevo Movimiento</a></Link>
+                  <a class="item">Nuevo Movimiento Recurrente</a>
+                  <a class="item">Movimientos Historicos</a>
                 </div>
               </div>
               <div class="item">
-                <div class="header">Hosting</div>
+                <div class="header">Mi Perfil</div>
                 <div class="menu">
-                  <a class="item">Shared</a>
-                  <a class="item">Dedicated</a>
+                  <a class="item">Datos Personales</a>
+                  <a class="item">Datos de Cuenta</a>
                 </div>
               </div>
               <div class="item">
-                <div class="header">Support</div>
+                <div class="header">Reportes</div>
                 <div class="menu">
-                  <a class="item">E-mail Support</a>
+                  <a class="item">Reporte Movimientos</a>
                   <a class="item">FAQs</a>
                 </div>
               </div>
@@ -50,6 +53,15 @@ const DesktopHome = () => {
             <Switch>
               <Route path="/nuevaCuenta">
                 <CrearCuenta />
+              </Route>
+              <Route path="/nuevoMovimiento">
+                <CrearMovimiento />
+              </Route>
+              <Route path="/movimientos">
+                <VerMovimientos />
+              </Route>
+              <Route path="/miscuentas">
+                <MisCuentas/>
               </Route>
             </Switch>
             </div>

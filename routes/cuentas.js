@@ -8,7 +8,7 @@ const Concepto = require('../db/models/Concepto')
 const utils = require('../utils/crearCuenta')
 
 cuentas.get("/", (req,res) => {
-    Cuenta.find()
+    Cuenta.find({Active: true}).populate("Periodos").populate("Monedas")
     .then(data => res.send(data))
 } )
 
