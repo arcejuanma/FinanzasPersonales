@@ -8,6 +8,9 @@ var cors = require('cors')
 const api = require('./routes/api')
 
 const app = express()
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+
 app.use(cors())
 // create a write stream (in append mode)
 var accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' })
@@ -18,8 +21,7 @@ app.use(morgan('tiny'))
 app.use('/static', express.static('public'));
 app.use(express.static(path.join(__dirname, 'build')))
 
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: false }))
+
 app.use("/api", api);
 
 
